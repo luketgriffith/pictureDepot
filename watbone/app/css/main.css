@@ -2021,11 +2021,28 @@
 body {
   background: #e2ebf3; }
 
+.itemBox {
+  max-width: 60%;
+  margin: 0 auto; }
+
 .items {
   float: left;
   max-width: 30%;
+  height: 400px;
   margin: 1.5%;
   text-overflow: hidden;
-  overflow: hidden; }
+  overflow: hidden;
+  z-index: 1; }
+  .items h1 {
+    color: blue; }
+  .items h2 {
+    font-size: 12px; }
+
+.pop {
+  display: block;
+  max-width: 50%;
+  height: 125px;
+  margin: 0 auto;
+  z-index: 2; }
 
 /*# sourceMappingURL=main.css.map */

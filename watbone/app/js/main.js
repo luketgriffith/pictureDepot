@@ -40,27 +40,14 @@ var group = new _object_collection2['default']();
 function draw(data) {
   var stuff = (0, _jquery2['default'])('<div></div>');
   group.each(function (x) {
-
     var data = x.toJSON();
-    console.log(data);
+
     var things = (0, _jquery2['default'])((0, _object_template2['default'])(data));
     stuff.append(things);
   });
-  (0, _jquery2['default'])('body').html(stuff);
+  (0, _jquery2['default'])('.itemBox').html(stuff);
 }
-// function renderPeople(){
-//   //create empty DOM node
-//   let $ul = $('<ul></ul>')
-//   people.each(function(person){
-//     let data = person.toJSON();
-//     let $li = $( PersonTemplate(data) );
-//     $ul.append($li);
 
-//   })
-//   $('body').html($ul);
-// }
-
-console.log(group);
 group.fetch().then(draw); //fetch data and then render people
 
 },{"./object_collection":2,"./object_template":3,"./objects":4,"jquery":6,"moment":7,"underscore":8}],2:[function(require,module,exports){
@@ -101,7 +88,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 function ObjectTemplate(data) {
-  return "<div class='items'>\n    <h1>" + data.name + " </h1>\n    <h2>" + data.description + " </h2>\n    <h2>" + data.quantity + " </h2>\n    </div>\n  ";
+  return "<div class='items' id='meow'>\n    <h1>" + data.name + " </h1>\n    <img src='" + data.pic + "'>\n    <h2>" + data.description + " </h2>\n    <h2>" + data.quantity + " </h2> \n    </div>\n  ";
 }
 
 exports["default"] = ObjectTemplate;

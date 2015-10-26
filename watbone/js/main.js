@@ -19,27 +19,20 @@ let group = new objectGroup();
 function draw(data){
   let stuff = $('<div></div>')
   group.each(function(x){
-
-    let data = x.toJSON();
-    console.log(data);
+  let data = x.toJSON();
+    
     let things = $(ObjectTemplate(data));
     stuff.append(things);
+    
   })
-  $('body').html(stuff);
+  $('.itemBox').html(stuff);
+
+  
 }  
-// function renderPeople(){
-//   //create empty DOM node
-//   let $ul = $('<ul></ul>')
-//   people.each(function(person){
-//     let data = person.toJSON();
-//     let $li = $( PersonTemplate(data) );
-//     $ul.append($li);
 
-//   })
-//   $('body').html($ul);
-// }
+  
 
 
-
-console.log(group); 
+ 
 group.fetch().then(draw);  //fetch data and then render people
+

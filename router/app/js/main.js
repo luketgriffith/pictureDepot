@@ -197,9 +197,15 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 function contacts(data) {
+  console.log(data);
+  data.sort(function (a, b) {
+    if (a.lastName < b.lastName) return -1;
+    if (a.lastName > b.lastName) return 1;
+    return 0;
+  });
   return data.map(function (item) {
     return '\n      <li class=\'names\' data-todo-id="' + item.objectId + '"><i class="fa fa-user"></i> ' + item.lastName + ', ' + item.firstName + '</li>';
-  }).sort().join('');
+  }).join('');
 };
 
 function contactsTemplate(data) {

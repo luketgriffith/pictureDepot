@@ -18,3 +18,4 @@ function contactsTemplate(data){
 };
 
 export default contactsTemplate;
+export default contacts;

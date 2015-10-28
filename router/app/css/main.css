@@ -2022,7 +2022,8 @@ body {
   background: #e2ebf3; }
 
 h1 {
-  margin-left: 20px; }
+  margin-left: 20px;
+  max-width: 27%; }
 
 h1:hover {
   background-color: #333333; }
@@ -2041,11 +2042,11 @@ ul {
   background-color: #333333; }
 
 .app {
-  max-width: 33%; }
+  max-width: 27%; }
 
 .contact {
   float: left;
   margin-left: 20px;
-  max-width: 33%; }
+  max-width: 27%; }
 
 /*# sourceMappingURL=main.css.map */

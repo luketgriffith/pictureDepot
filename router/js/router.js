@@ -1,13 +1,16 @@
 import Backbone from 'backbone';
 import personCollection from './person_collection';
 import contactsTemplate from './views/home';
+import contacts from './views/home';
 import personTemplate from './views/person';
 import $ from 'jquery';
-
+import addTemplate from './views/add_person';
+import personModel from './person_model'
 let Router = Backbone.Router.extend({
   routes: {
     "": "home",  
-    "person1": "person1page"
+    "person1": "person1page",
+    "add": "addPerson"
     },
 
 
@@ -28,8 +31,11 @@ let Router = Backbone.Router.extend({
         $('h1').on('click', function(){
         router.navigate(`/`);
         router.home();
-        });
-
+    });
+        $('#add').on('click', function(){
+          router.navigate(`/add`);
+          router.addPerson();
+        })
   },
 
   home: function  () {
@@ -59,7 +65,31 @@ let Router = Backbone.Router.extend({
     }    
     
   },
+  addPerson: function(){
+    $('.addPersonBox').append(addTemplate);
+    $('#save').on('click', ()=>{
+    var first = $('#addFirstName').val();
+    var last = $('#addLastName').val();
+    var newPhone = $('#addPhone').val();
+    var newEmail = $('#addEmail').val();
+    var newImage = $('#addPic').val();
+    
+    let newDude = new personModel({
+      firstName: first,
+      lastName: last,
+      email: newEmail,
+      image: newImage
+      // phone: newPhone,
+    });
 
+    console.log(newDude);
+    newDude.save();
+    $('.addPersonBox').remove();
+    let router = this;
+    router.navigate(`/`);
+    location.reload(true);
+    })
+  },
   start: function(){
     Backbone.history.start();   //Backbone.history watches the URL chain to see if it changes. start starts it
   }

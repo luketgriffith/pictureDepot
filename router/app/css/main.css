@@ -2024,16 +2024,25 @@ body {
 h1 {
   margin-left: 20px; }
 
+h1:hover {
+  background-color: #333333; }
+
 ul {
   list-style: none;
   margin-left: 20px;
-  padding: 4px; }
+  padding: 4px;
+  max-width: 100%; }
   ul li {
     font-size: 24px;
-    padding: 5px 0; }
+    padding: 5px 0;
+    max-width: 100%; }
+
+.names:hover {
+  background-color: #333333; }
 
 .contact {
   float: left;
-  margin-left: 20px; }
+  margin-left: 20px;
+  max-width: 33%; }
 
 /*# sourceMappingURL=main.css.map */

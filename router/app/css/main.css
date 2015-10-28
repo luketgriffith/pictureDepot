@@ -2040,6 +2040,9 @@ ul {
 .names:hover {
   background-color: #333333; }
 
+.app {
+  max-width: 33%; }
+
 .contact {
   float: left;
   margin-left: 20px;

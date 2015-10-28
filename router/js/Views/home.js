@@ -2,8 +2,8 @@ function contacts(data){
   return data.map(function(item){
     return `
       <li class='names' data-todo-id="${item.objectId}">${item.lastName}, ${item.firstName}</li>`
-        }).join('');
-  
+        }).sort().join('');
+
 };
 
 function contactsTemplate(data){

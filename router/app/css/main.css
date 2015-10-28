@@ -2021,4 +2021,19 @@
 body {
   background: #e2ebf3; }
 
+h1 {
+  margin-left: 20px; }
+
+ul {
+  list-style: none;
+  margin-left: 20px;
+  padding: 4px; }
+  ul li {
+    font-size: 24px;
+    padding: 5px 0; }
+
+.contact {
+  float: left;
+  margin-left: 20px; }
+
 /*# sourceMappingURL=main.css.map */

@@ -199,7 +199,7 @@ Object.defineProperty(exports, '__esModule', {
 function contacts(data) {
   return data.map(function (item) {
     return '\n      <li class=\'names\' data-todo-id="' + item.objectId + '">' + item.lastName + ', ' + item.firstName + '</li>';
-  }).join('');
+  }).sort().join('');
 };
 
 function contactsTemplate(data) {
@@ -224,7 +224,7 @@ var _underscore2 = _interopRequireDefault(_underscore);
 
 function processData(data) {
 
-  return '<h2>' + data.firstName + ' ' + data.lastName + '</h2>\n          <h3>Phone: ' + data.phone + '</h3>\n          <h3>Email: ' + data.email + '</h3>\n  ';
+  return '<div class=\'contact\'>\n          <h2>' + data.firstName + ' ' + data.lastName + '</h2>\n          <img src=\'' + data.image + '\'>\n          <h3>Phone: ' + data.phone + '</h3>\n          <h3>Email: ' + data.email + '</h3>\n          </div>\n  ';
 }
 
 function personTemplate(data) {

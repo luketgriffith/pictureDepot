@@ -198,7 +198,7 @@ Object.defineProperty(exports, '__esModule', {
 });
 function contacts(data) {
   return data.map(function (item) {
-    return '\n      <li class=\'names\' data-todo-id="' + item.objectId + '">' + item.lastName + ', ' + item.firstName + '</li>';
+    return '\n      <li class=\'names\' data-todo-id="' + item.objectId + '"><i class="fa fa-user"></i> ' + item.lastName + ', ' + item.firstName + '</li>';
   }).sort().join('');
 };
 

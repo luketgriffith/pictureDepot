@@ -6,17 +6,17 @@ import $ from 'jquery';
 
 let Router = Backbone.Router.extend({
   routes: {
-    //routes: functions called when route is triggered
-    "": "home",   //home page doesn't need a name
-    "person1": "person1page",
-    "person2": "person2page"
-  },
+    "": "home",  
+    "person1": "person1page"
+    },
 
 
   initialize: function(appElement){
+    
     this.$el = appElement;
     this.people = new personCollection();
     let router= this;
+    
     this.$el.on('click', '.names', function(event){
       
         let $li= $(event.currentTarget);
@@ -24,15 +24,20 @@ let Router = Backbone.Router.extend({
         router.navigate(`people/${nameId}`);
         router.person1page(nameId);
 
-    })
+    });
+        $('h1').on('click', function(){
+        router.navigate(`/`);
+        router.home();
+        });
+
   },
 
   home: function  () {
     
      this.people.fetch().then(function(){
       this.$el.html(contactsTemplate(this.people.toJSON()) );
-
-    }.bind(this))
+      }.bind(this));
+     
   },
 
     showSpinner: function() {
@@ -43,23 +48,18 @@ let Router = Backbone.Router.extend({
   person1page: function(nameId){
     let dude = this.people.get(nameId);
      if (dude) {
-      // todos have fetched and we grabbed the one we want
       this.$el.html( personTemplate(dude.toJSON()) );
     } else {
-      // todos not fetched so we need to load the one we want
       let router = this;
       dude = this.people.add({objectId: nameId});
       this.showSpinner();
       dude.fetch().then(function() {
         router.$el.html( personTemplate(dude.toJSON()) );
       });
-    }
+    }    
     
   },
-  person2page: function(){
-    //do something
-    console.log('about');
-  },
+
   start: function(){
     Backbone.history.start();   //Backbone.history watches the URL chain to see if it changes. start starts it
   }

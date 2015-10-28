@@ -130,22 +130,26 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 var Router = _backbone2['default'].Router.extend({
   routes: {
-    //routes: functions called when route is triggered
-    "": "home", //home page doesn't need a name
-    "person1": "person1page",
-    "person2": "person2page"
+    "": "home",
+    "person1": "person1page"
   },
 
   initialize: function initialize(appElement) {
+
     this.$el = appElement;
     this.people = new _person_collection2['default']();
     var router = this;
+
     this.$el.on('click', '.names', function (event) {
 
       var $li = (0, _jquery2['default'])(event.currentTarget);
       var nameId = $li.data('todo-id');
       router.navigate('people/' + nameId);
       router.person1page(nameId);
+    });
+    (0, _jquery2['default'])('h1').on('click', function () {
+      router.navigate('/');
+      router.home();
     });
   },
 
@@ -164,11 +168,9 @@ var Router = _backbone2['default'].Router.extend({
 
     var dude = this.people.get(nameId);
     if (dude) {
-      // todos have fetched and we grabbed the one we want
       this.$el.html((0, _viewsPerson2['default'])(dude.toJSON()));
     } else {
       (function () {
-        // todos not fetched so we need to load the one we want
         var router = _this;
         dude = _this.people.add({ objectId: nameId });
         _this.showSpinner();
@@ -178,10 +180,7 @@ var Router = _backbone2['default'].Router.extend({
       })();
     }
   },
-  person2page: function person2page() {
-    //do something
-    console.log('about');
-  },
+
   start: function start() {
     _backbone2['default'].history.start(); //Backbone.history watches the URL chain to see if it changes. start starts it
   }
@@ -199,9 +198,8 @@ Object.defineProperty(exports, '__esModule', {
 });
 function contacts(data) {
   return data.map(function (item) {
-    return '\n    <li class=\'names\' data-todo-id="' + item.objectId + '">Name: ' + item.lastName + ', ' + item.firstName + '</li>';
+    return '\n      <li class=\'names\' data-todo-id="' + item.objectId + '">' + item.lastName + ', ' + item.firstName + '</li>';
   }).join('');
-  return data;
 };
 
 function contactsTemplate(data) {
@@ -225,15 +223,8 @@ var _underscore = require('underscore');
 var _underscore2 = _interopRequireDefault(_underscore);
 
 function processData(data) {
-  console.log(data.objectId);
-  return '<h2>' + data.firstName + ' ' + data.lastName + '</h2>';
-  // return data.objectId{
-  //   return `
-  //   <li>Name: ${item.lastName}, ${item.firstName}</li>
-  //   <li>Phone: ${item.phone}</li>
-  //   <li>Email: ${item.email}</li>`
 
-  // .join('');
+  return '<h2>' + data.firstName + ' ' + data.lastName + '</h2>\n          <h3>Phone: ' + data.phone + '</h3>\n          <h3>Email: ' + data.email + '</h3>\n  ';
 }
 
 function personTemplate(data) {

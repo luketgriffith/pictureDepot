@@ -1,10 +1,10 @@
 function contacts(data){
   return data.map(function(item){
     return `
-    <li class='names' data-todo-id="${item.objectId}">Name: ${item.lastName}, ${item.firstName}</li>`
-    }).join('');
-  return data;
-};  
+      <li class='names' data-todo-id="${item.objectId}">${item.lastName}, ${item.firstName}</li>`
+        }).join('');
+  
+};
 
 function contactsTemplate(data){
   return `

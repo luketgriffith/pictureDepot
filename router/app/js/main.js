@@ -163,6 +163,7 @@ var Router = _backbone2['default'].Router.extend({
       router.home();
     });
     (0, _jquery2['default'])('#add').on('click', function () {
+      (0, _jquery2['default'])('#add').remove();
       router.navigate('/add');
       router.addPerson();
     });
@@ -202,7 +203,7 @@ var Router = _backbone2['default'].Router.extend({
     (0, _jquery2['default'])('#save').on('click', function () {
       var first = (0, _jquery2['default'])('#addFirstName').val();
       var last = (0, _jquery2['default'])('#addLastName').val();
-      var newPhone = (0, _jquery2['default'])('#addPhone').val();
+      var newPhone = Number((0, _jquery2['default'])('#addPhone').val());
       var newEmail = (0, _jquery2['default'])('#addEmail').val();
       var newImage = (0, _jquery2['default'])('#addPic').val();
 
@@ -210,8 +211,8 @@ var Router = _backbone2['default'].Router.extend({
         firstName: first,
         lastName: last,
         email: newEmail,
-        image: newImage
-        // phone: newPhone,
+        image: newImage,
+        phone: newPhone
       });
 
       console.log(newDude);

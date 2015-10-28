@@ -33,6 +33,7 @@ let Router = Backbone.Router.extend({
         router.home();
     });
         $('#add').on('click', function(){
+          $('#add').remove();
           router.navigate(`/add`);
           router.addPerson();
         })
@@ -70,7 +71,7 @@ let Router = Backbone.Router.extend({
     $('#save').on('click', ()=>{
     var first = $('#addFirstName').val();
     var last = $('#addLastName').val();
-    var newPhone = $('#addPhone').val();
+    var newPhone = Number($('#addPhone').val());
     var newEmail = $('#addEmail').val();
     var newImage = $('#addPic').val();
     
@@ -78,8 +79,8 @@ let Router = Backbone.Router.extend({
       firstName: first,
       lastName: last,
       email: newEmail,
-      image: newImage
-      // phone: newPhone,
+      image: newImage,
+      phone: newPhone
     });
 
     console.log(newDude);

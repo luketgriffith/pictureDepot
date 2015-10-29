@@ -35,17 +35,21 @@ let Router = Backbone.Router.extend({
   },
 
   showHome(){
+    let a =[]
+    var b;
     this.users.fetch().then(()=>{
       let x = this.users.toJSON();
-      console.log(x);
-       _.each(x, function(y){
-   
-        var root = <div className = {y.objectId}>
-                      <h2>{y.userName}</h2>
-                      <img src={y.image}/>
-                  </div>
-        ReactDom.render(root, document.querySelector('.app'));
+       let z = x.map(function(y){
+               
+          let root=<div className = {y.objectId}>
+                   <h2>{y.userName}</h2>
+                   <img src={y.image}/>
+                </div> ; 
+                y.pop();    
+            ReactDom.render(root, document.querySelector('.app'));  
        });
+        
+      
     });
   },
 

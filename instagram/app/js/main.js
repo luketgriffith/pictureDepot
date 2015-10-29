@@ -212,10 +212,11 @@ var Router = _backbone2['default'].Router.extend({
   showHome: function showHome() {
     var _this = this;
 
+    var a = [];
+    var b;
     this.users.fetch().then(function () {
       var x = _this.users.toJSON();
-      console.log(x);
-      _underscore2['default'].each(x, function (y) {
+      var z = x.map(function (y) {
 
         var root = _react2['default'].createElement(
           'div',
@@ -227,6 +228,7 @@ var Router = _backbone2['default'].Router.extend({
           ),
           _react2['default'].createElement('img', { src: y.image })
         );
+        y.pop();
         _reactDom2['default'].render(root, document.querySelector('.app'));
       });
     });

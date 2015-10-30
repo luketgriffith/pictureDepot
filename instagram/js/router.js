@@ -6,12 +6,16 @@ import UserCollection from './resources/collection';
 import $ from 'jquery';
 import UserTemplate from './resources/user_template';
 import _ from 'underscore';
+import HomeTemplate from './router_pages/home_page';
+
 let Router = Backbone.Router.extend({
 
   routes: {
     ""      : "showHome",
     "detail"  : "showDetail",
-    "add": "showAdd"
+    "add": "showAdd",
+    "wat": "wat",
+    "preview": "showPreview"
   },
 
   initialize(appElement) {
@@ -34,24 +38,13 @@ let Router = Backbone.Router.extend({
     return this;
   },
 
-  showHome(){
-    let a =[]
-    var b;
+  showHome() {
     this.users.fetch().then(()=>{
-      let x = this.users.toJSON();
-       let z = x.map(function(y){
-               
-          let root=<div className = {y.objectId}>
-                   <h2>{y.userName}</h2>
-                   <img src={y.image}/>
-                </div> ; 
-                y.pop();    
-            ReactDom.render(root, document.querySelector('.app'));  
-       });
-        
-      
+      ReactDom.render(<HomeTemplate tacoSteak = {this.users.toJSON()}  
+        whatever={this.users.toJSON()} goSingleView={(id)=>this.goto(`preview/${id}`)} />, document.querySelector('.app'));
+    
     });
-  },
+  }
 
 });
 

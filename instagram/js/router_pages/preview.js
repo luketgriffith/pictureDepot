@@ -7,21 +7,18 @@ export default React.createClass({
     this.props.goback();
   },
 
-  findData(item, id){
-    if(id===item.objectId){
-      return <div key ={wat}>
-            <h2>{item.userName}</h2>
-            <img src={item.image}/>
-            <span>{item.objectId}</span>
+  thumbnail(userName, image, objectId){
+    return <div>
+            <h2>{image.userName}</h2>
+            <img src={image.image}/>
+            <span>{image.objectId}</span>
            </div>;
-    }
   },
 
   render() {
     return (
       <div>
-        <h1>Scrub</h1>
-        {this.props.view.map(this.findData)}
+        <img src={this.props.thumbnail}/>
         <button onClick={this.gohome}>Go Back</button>
       </div>
     );

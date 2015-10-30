@@ -234,12 +234,14 @@ var Router = _backbone2['default'].Router.extend({
     var _this2 = this;
 
     console.log(id);
-    this.users.fetch().then(function () {
-
-      _reactDom2['default'].render(_react2['default'].createElement(_router_pagesPreview2['default'], { single: _this2.users.toJSON(), view: _this2.users.toJSON(), goback: function () {
-          return _this2.goto('/');
-        } }), document.querySelector('.app'));
+    var dumpster = this.users.toJSON().find(function (item) {
+      return item.objectId === id;
     });
+    console.log(dumpster);
+
+    _reactDom2['default'].render(_react2['default'].createElement(_router_pagesPreview2['default'], { thumbnail: dumpster.image, goback: function () {
+        return _this2.goto('/');
+      } }), document.querySelector('.app'));
   },
   addPic: function addPic() {}
 
@@ -325,36 +327,29 @@ exports['default'] = _react2['default'].createClass({
     this.props.goback();
   },
 
-  findData: function findData(item, id) {
-    if (id === item.objectId) {
-      return _react2['default'].createElement(
-        'div',
-        { key: wat },
-        _react2['default'].createElement(
-          'h2',
-          null,
-          item.userName
-        ),
-        _react2['default'].createElement('img', { src: item.image }),
-        _react2['default'].createElement(
-          'span',
-          null,
-          item.objectId
-        )
-      );
-    }
+  thumbnail: function thumbnail(userName, image, objectId) {
+    return _react2['default'].createElement(
+      'div',
+      null,
+      _react2['default'].createElement(
+        'h2',
+        null,
+        image.userName
+      ),
+      _react2['default'].createElement('img', { src: image.image }),
+      _react2['default'].createElement(
+        'span',
+        null,
+        image.objectId
+      )
+    );
   },
 
   render: function render() {
     return _react2['default'].createElement(
       'div',
       null,
-      _react2['default'].createElement(
-        'h1',
-        null,
-        'Scrub'
-      ),
-      this.props.view.map(this.findData),
+      _react2['default'].createElement('img', { src: this.props.thumbnail }),
       _react2['default'].createElement(
         'button',
         { onClick: this.gohome },

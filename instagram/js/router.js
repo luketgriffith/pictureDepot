@@ -42,16 +42,17 @@ let Router = Backbone.Router.extend({
   showHome() {
     this.users.fetch().then(()=>{
       ReactDom.render(<HomeTemplate tacoSteak = {this.users.toJSON()}  
-      goSingleView={(id)=>this.goto(`preview/${id}`)} />, document.querySelector('.app'));
-    
+      goSingleView={(id)=>this.goto(`preview/${id}`)}/>, document.querySelector('.app'));
+      
     });
   },
   preview(id){
     console.log(id);
-    this.users.fetch().then(()=>{
+    let dumpster = this.users.toJSON().find(item=>item.objectId === id)
+    console.log(dumpster);
     
-    ReactDom.render(<PreviewTemplate single= {this.users.toJSON()} view={this.users.toJSON()} goback={()=>this.goto(`/`)}/>, document.querySelector('.app'));
-    });
+    ReactDom.render(<PreviewTemplate thumbnail ={dumpster.image} goback={()=>this.goto(`/`)}/>, document.querySelector('.app'));
+    
   },
   addPic(){
 

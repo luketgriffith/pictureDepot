@@ -15,16 +15,11 @@ export default React.createClass({
     this.props.goSingleView(id);
   },
 
-  getId(item){
-    console.log(item.objectId)
-    return item.objectId;
-  },
 
   render() {
     return (
       <div>
         {this.props.tacoSteak.map(this.processData)}
-        {this.props.whatever.map(this.getId)}
       </div>
     );
   }

@@ -7,7 +7,7 @@ import $ from 'jquery';
 import UserTemplate from './resources/user_template';
 import _ from 'underscore';
 import HomeTemplate from './router_pages/home_page';
-
+import PreviewTemplate from './router_pages/preview';
 let Router = Backbone.Router.extend({
 
   routes: {
@@ -15,7 +15,8 @@ let Router = Backbone.Router.extend({
     "detail"  : "showDetail",
     "add": "showAdd",
     "wat": "wat",
-    "preview": "showPreview"
+    "preview/:id": "preview",
+    "add": "addPic"
   },
 
   initialize(appElement) {
@@ -41,9 +42,19 @@ let Router = Backbone.Router.extend({
   showHome() {
     this.users.fetch().then(()=>{
       ReactDom.render(<HomeTemplate tacoSteak = {this.users.toJSON()}  
-        whatever={this.users.toJSON()} goSingleView={(id)=>this.goto(`preview/${id}`)} />, document.querySelector('.app'));
+      goSingleView={(id)=>this.goto(`preview/${id}`)} />, document.querySelector('.app'));
     
     });
+  },
+  preview(id){
+    console.log(id);
+    this.users.fetch().then(()=>{
+    
+    ReactDom.render(<PreviewTemplate single= {this.users.toJSON()} view={this.users.toJSON()} goback={()=>this.goto(`/`)}/>, document.querySelector('.app'));
+    });
+  },
+  addPic(){
+
   }
 
 });

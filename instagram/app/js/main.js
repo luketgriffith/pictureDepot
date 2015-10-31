@@ -99,6 +99,11 @@ exports['default'] = _react2['default'].createClass({
       'div',
       null,
       _react2['default'].createElement(
+        'h1',
+        null,
+        'Picture Depot'
+      ),
+      _react2['default'].createElement(
         'button',
         { onClick: this.goAdd },
         'Add Picture'
@@ -308,6 +313,8 @@ var Router = _backbone2['default'].Router.extend({
       } }), document.querySelector('.app'));
   },
   edit: function edit(id) {
+    var _this3 = this;
+
     var dumpster = this.users.toJSON().find(function (item) {
       return item.objectId === id;
     });
@@ -329,13 +336,13 @@ var Router = _backbone2['default'].Router.extend({
         });
         editPic.save();
         console.log(editPic);
-        // this.goto(`/`);
-        // location.reload(true);
+        setTimeout(_this3.goto('/'), 1000);
+        location.reload(true);
       } }), document.querySelector('.app'));
   },
 
   addPic: function addPic() {
-    var _this3 = this;
+    var _this4 = this;
 
     _reactDom2['default'].render(_react2['default'].createElement(_router_pagesAdd_pic2['default'], { savePicture: function () {
         var name = document.querySelector('.nameInput').value;
@@ -348,7 +355,7 @@ var Router = _backbone2['default'].Router.extend({
           likes: 0
         });
         newPic.save();
-        _this3.goto('/');
+        _this4.goto('/');
       } }), document.querySelector('.app'));
   }
 
@@ -426,7 +433,35 @@ exports['default'] = _react2['default'].createClass({
   likeIt: function likeIt() {
     this.props.likePic();
   },
+  getInitialState: function getInitialState() {
+    return {
+      message1: this.props.thumbTitle,
+      message2: this.props.thumbnail,
+      message3: this.props.cap
+    };
+  },
 
+  updateMessage: function updateMessage(event) {
+    var newMessage = event.target.value;
+
+    this.setState({
+      message1: newMessage
+    });
+  },
+  updateMessage2: function updateMessage2(event) {
+    var newMessage = event.target.value;
+
+    this.setState({
+      message2: newMessage
+    });
+  },
+  updateMessage3: function updateMessage3(event) {
+    var newMessage = event.target.value;
+
+    this.setState({
+      message3: newMessage
+    });
+  },
   render: function render() {
     return _react2['default'].createElement(
       'div',
@@ -448,9 +483,15 @@ exports['default'] = _react2['default'].createClass({
         null,
         this.props.cap
       ),
-      _react2['default'].createElement('input', { type: 'text', className: 'newTitle', placeholder: 'Your new title' }),
-      _react2['default'].createElement('input', { type: 'text', className: 'newImg', placeholder: 'Your new image URL' }),
-      _react2['default'].createElement('textarea', { type: 'text', className: 'newCaption', placeholder: 'Your new caption' }),
+      _react2['default'].createElement('input', { type: 'text', onChange: this.updateMessage,
+        className: 'newTitle', value: this.state.message1,
+        placeholder: 'Your new title' }),
+      _react2['default'].createElement('input', { type: 'text', onChange: this.updateMessage2,
+        className: 'newImg', value: this.state.message2,
+        placeholder: 'Your new image URL' }),
+      _react2['default'].createElement('textarea', { type: 'text', onChange: this.updateMessage3,
+        className: 'newCaption', value: this.state.message3,
+        placeholder: 'Your new caption' }),
       _react2['default'].createElement(
         'button',
         { onClick: this.likeIt },
@@ -495,7 +536,7 @@ exports['default'] = _react2['default'].createClass({
       'div',
       { key: wat, onClick: function (event) {
           return _this.singleView(item.objectId);
-        } },
+        }, className: 'mainDivs' },
       _react2['default'].createElement(
         'h2',
         null,
@@ -503,15 +544,19 @@ exports['default'] = _react2['default'].createClass({
       ),
       _react2['default'].createElement('img', { src: item.image }),
       _react2['default'].createElement(
-        'span',
-        null,
-        'Likes: ',
-        item.likes
-      ),
-      _react2['default'].createElement(
-        'p',
-        null,
-        item.caption
+        'div',
+        { className: 'likesCaption' },
+        _react2['default'].createElement(
+          'span',
+          null,
+          'Likes: ',
+          item.likes
+        ),
+        _react2['default'].createElement(
+          'p',
+          null,
+          item.caption
+        )
       )
     );
   },
@@ -523,7 +568,7 @@ exports['default'] = _react2['default'].createClass({
   render: function render() {
     return _react2['default'].createElement(
       'div',
-      null,
+      { className: 'mainPage' },
       this.props.tacoSteak.map(this.processData)
     );
   }

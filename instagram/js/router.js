@@ -94,8 +94,8 @@ let Router = Backbone.Router.extend({
     });
     editPic.save();
     console.log(editPic);
-    // this.goto(`/`);
-    // location.reload(true);
+    setTimeout(this.goto(`/`), 1000);
+    location.reload(true);
   }
   }/>, document.querySelector('.app'))
   

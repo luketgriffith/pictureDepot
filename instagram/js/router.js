@@ -85,6 +85,7 @@ let Router = Backbone.Router.extend({
     let name = document.querySelector('.newTitle').value;
     let imgUrl = document.querySelector('.newImg').value;
     let newCap = document.querySelector('.newCaption').value;
+    console.log(name);
     let editPic = new UserModel({
       objectId: dumpster.objectId,
       userName: name,
@@ -93,9 +94,8 @@ let Router = Backbone.Router.extend({
     
     });
     editPic.save();
-    console.log(editPic);
-    setTimeout(this.goto(`/`), 1000);
-    location.reload(true);
+    setTimeout(this.goto(`/`), 5000);
+    
   }
   }/>, document.querySelector('.app'))
   
@@ -107,6 +107,7 @@ let Router = Backbone.Router.extend({
     let name = document.querySelector('.nameInput').value;
     let imgUrl = document.querySelector('.imgInput').value;
     let newCap = document.querySelector('.captionInput').value;
+
     let newPic = new UserModel({
       userName: name,
       image: imgUrl,

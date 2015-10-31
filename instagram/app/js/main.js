@@ -327,6 +327,7 @@ var Router = _backbone2['default'].Router.extend({
         var name = document.querySelector('.newTitle').value;
         var imgUrl = document.querySelector('.newImg').value;
         var newCap = document.querySelector('.newCaption').value;
+        console.log(name);
         var editPic = new _resourcesModel2['default']({
           objectId: dumpster.objectId,
           userName: name,
@@ -335,9 +336,7 @@ var Router = _backbone2['default'].Router.extend({
 
         });
         editPic.save();
-        console.log(editPic);
-        setTimeout(_this3.goto('/'), 1000);
-        location.reload(true);
+        setTimeout(_this3.goto('/'), 5000);
       } }), document.querySelector('.app'));
   },
 
@@ -348,6 +347,7 @@ var Router = _backbone2['default'].Router.extend({
         var name = document.querySelector('.nameInput').value;
         var imgUrl = document.querySelector('.imgInput').value;
         var newCap = document.querySelector('.captionInput').value;
+
         var newPic = new _resourcesModel2['default']({
           userName: name,
           image: imgUrl,
@@ -418,7 +418,8 @@ var _react2 = _interopRequireDefault(_react);
 exports['default'] = _react2['default'].createClass({
   displayName: 'edit_post',
 
-  savePic: function savePic() {
+  savePic: function savePic(event) {
+    event.preventDefault();
     this.props.savePicture();
   },
 

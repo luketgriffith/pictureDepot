@@ -2,7 +2,8 @@ import React from 'react';
 
 export default React.createClass({
   
-  savePic(){
+  savePic(event){
+    event.preventDefault();
     this.props.savePicture();
   },
 
@@ -44,14 +45,14 @@ export default React.createClass({
   updateMessage2(event) {
     let newMessage = event.target.value;
 
-    this.setState({
+      this.setState({
       message2: newMessage,
     });
   },
     updateMessage3(event) {
     let newMessage = event.target.value;
 
-    this.setState({
+      this.setState({
       message3: newMessage,
     });
   },

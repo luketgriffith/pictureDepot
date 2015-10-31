@@ -7,18 +7,29 @@ export default React.createClass({
     this.props.goback();
   },
 
-  thumbnail(userName, image, objectId){
-    return <div>
-            <h2>{image.userName}</h2>
-            <img src={image.image}/>
-            <span>{image.objectId}</span>
-           </div>;
+  thumbnail(image){
+ 
   },
+  thumbTitle(image){
 
+  },
+  cap(image){
+
+  },
+  likes(image){
+
+  },
+  likeIt(){
+    this.props.likePic();
+  },
   render() {
     return (
-      <div>
+      <div className= 'chimichangas'>
+        <h2>{this.props.thumbTitle}</h2>
         <img src={this.props.thumbnail}/>
+        <span>Likes: {this.props.likes}</span>
+        <p>{this.props.cap}</p>
+        <button onClick={this.likeIt}>Like</button>
         <button onClick={this.gohome}>Go Back</button>
       </div>
     );

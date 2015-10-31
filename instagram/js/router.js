@@ -9,7 +9,9 @@ import _ from 'underscore';
 import HomeTemplate from './router_pages/home_page';
 import PreviewTemplate from './router_pages/preview';
 import HomeTop from './resources/home_top';
-import AddPicture from './router_pages/add_pic'
+import AddPicture from './router_pages/add_pic';
+import EditPost from './router_pages/edit_post';
+
 let Router = Backbone.Router.extend({
 
   routes: {
@@ -18,6 +20,7 @@ let Router = Backbone.Router.extend({
     "add": "showAdd",
     "wat": "wat",
     "preview/:id": "preview",
+    "edit/:id": "edit",
     "add": "addPic"
   },
 
@@ -50,14 +53,17 @@ let Router = Backbone.Router.extend({
     });
   },
   preview(id){
-    console.log(id);
 
     let dumpster = this.users.toJSON().find(item=>item.objectId === id)
-    console.log(dumpster);
-    
     ReactDom.render(<PreviewTemplate thumbnail ={dumpster.image}
     thumbTitle={dumpster.userName} 
+    likes = {dumpster.likes}
     cap={dumpster.caption}
+    
+    editPost={()=>{this.goto(`edit/${dumpster.objectId}`)}
+    
+    }
+
     likePic={()=>{
       let picLike = new UserModel({
         likes: dumpster.likes+1,
@@ -68,6 +74,34 @@ let Router = Backbone.Router.extend({
     goback={()=>this.goto(`/`)}/>, document.querySelector('.app'));
 
   },
+  edit(id){
+    let dumpster = this.users.toJSON().find(item=>item.objectId === id)
+    ReactDom.render(<EditPost
+    thumbnail ={dumpster.image}
+    thumbTitle={dumpster.userName} 
+    likes = {dumpster.likes}
+    cap={dumpster.caption}
+    savePicture={()=>{
+    let name = document.querySelector('.newTitle').value;
+    let imgUrl = document.querySelector('.newImg').value;
+    let newCap = document.querySelector('.newCaption').value;
+    let editPic = new UserModel({
+      objectId: dumpster.objectId,
+      userName: name,
+      image: imgUrl,
+      caption: newCap
+    
+    });
+    editPic.save();
+    console.log(editPic);
+    // this.goto(`/`);
+    // location.reload(true);
+  }
+  }/>, document.querySelector('.app'))
+  
+    
+  },
+
   addPic(){
     ReactDom.render(<AddPicture savePicture={()=>{
     let name = document.querySelector('.nameInput').value;
@@ -81,6 +115,7 @@ let Router = Backbone.Router.extend({
     });
     newPic.save();
     this.goto(`/`);
+
 
     }
     }/>, document.querySelector('.app'));

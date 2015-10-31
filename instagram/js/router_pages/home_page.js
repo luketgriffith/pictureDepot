@@ -15,7 +15,7 @@ export default React.createClass({
   singleView(id){
     this.props.goSingleView(id);
   },
-
+  
 
   render() {
     return (
